@@ -80,6 +80,5 @@ fabric.properties
 .venv
 ai_conversations/
 test_results/
-transcript_examples/
 .env
 .idea
