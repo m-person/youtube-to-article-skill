@@ -1,5 +1,11 @@
 # YouTube Transcript to Article — Requirements
 
+Skill name: `youtube-to-article`.
+
+Development location: `youtube-to-article/` at the root of this repository. Create and review the skill there, and test it before installation. Installation is a separate step.
+
+Skill name: youtube-to-article
+
 ## 1. Purpose
 
 Convert YouTube transcripts saved as Markdown files by Obsidian Web Clipper into coherent, readable, well-structured articles.
@@ -38,6 +44,8 @@ It may contain:
 5. Exclude promotional material outside the transcript unless explicitly requested.
 6. Preserve the original input file unchanged.
 7. Preserve source timestamps during processing so article sections and editorial observations can be traced to the original video.
+
+If the input has no clearly identifiable transcript section, stop without generating an article and explain that a clearly marked transcript section is required. Do not treat the entire file as the transcript or guess its boundaries.
 
 ## 3. Content Fidelity
 
@@ -118,6 +126,8 @@ When multiple interpretations remain plausible:
 4. Keep minor, inconsequential transcription uncertainties out of the article when they do not affect understanding.
 5. Preserve numbers, units, names, and technical terminology unless a correction is sufficiently supported.
 
+When Editorial Critique is disabled, place consequential transcription ambiguities and required correction notes in a separate **Transcription Notes** section at the end of the output. Include this section only when needed, and keep it clearly separated from the speaker's article content. This section records transcription concerns only; it does not substitute for the disabled factual or argumentative critique.
+
 ## 5. Removal of Irrelevant Material
 
 Remove speech and transcription artifacts that contribute neither substantive information nor meaningful argumentative or rhetorical function.
@@ -160,7 +170,7 @@ Support two editing modes for experimentation and comparison.
 
 Both modes must preserve an equivalent set of substantive claims, reasoning steps, examples, qualifications, and conclusions.
 
-The editing mode must be configurable, with **Conservative** as the default.
+The editing mode must be configurable, with **Polished** as the default.
 
 ### Mode A — Conservative
 
@@ -332,6 +342,8 @@ Keep these observations distinct from factual errors made by the speaker.
 
 External fact verification must be explicitly configurable and **disabled by default**.
 
+If external verification is enabled while Editorial Critique is disabled, ask the user to resolve the conflicting settings before starting conversion. Do not automatically enable the critique or silently skip verification.
+
 When external verification is disabled:
 
 - Evaluate internal consistency and reasoning quality.
@@ -361,6 +373,8 @@ Produce a separate Markdown file compatible with Obsidian.
 4. Timestamp references and visual-reference comments where useful.
 5. Optional Editorial Critique section at the end.
 
+When Editorial Critique is disabled and consequential transcription notes are needed, include a separate Transcription Notes section at the end instead.
+
 ### Requirements
 
 - Preserve valid Markdown formatting.
@@ -369,7 +383,8 @@ Produce a separate Markdown file compatible with Obsidian.
 - Preserve source links when relevant.
 - Preserve the original transcript file unchanged.
 - Make output naming and location configurable.
-- Use a deterministic default output filename derived from the input filename.
+- By default, save the output beside the input file using `<input-stem>.article.md`, where `<input-stem>` is the input filename without its final extension. For example, `lecture.md` produces `lecture.article.md` in the same directory.
+- If the destination file already exists, preserve it and automatically choose the first available numbered filename by inserting `.2`, `.3`, and so on before the final `.md` extension. For example, try `lecture.article.2.md`, then `lecture.article.3.md`. Apply this rule to both default and explicitly configured output filenames.
 - Keep the article and critique clearly separated.
 
 ## 12. Quality Assurance
@@ -412,6 +427,10 @@ Verify that:
 
 The review should evaluate the actual source and output content rather than relying solely on a general impression of completeness.
 
+### Long transcripts
+
+Process long transcripts in manageable sequential segments rather than requiring the user to split the input file. Retain source timestamps and enough context across segment boundaries to preserve references, qualifications, examples, and reasoning that span segments. Assemble the segments in the original order, then review the complete article for continuity and fidelity, including omissions, unsupported additions, and accidental duplication at segment boundaries. Apply the same content-preservation requirements regardless of transcript length.
+
 A separate reviewer pass may be used when available. Such a pass provides additional checking but does not guarantee complete detection of errors.
 
 ### Priority order
@@ -433,19 +452,31 @@ The eventual skill should expose the following configurable behavior.
 
 | Option | Default | Description |
 |---|---|---|
-| Editing mode | Conservative | Conservative or Polished editing |
+| Editing mode | Polished | Conservative or Polished editing |
 | Editorial Critique | Enabled | Include or omit the critique section |
 | External verification | Disabled | Verify factual claims using external sources |
 | Section timestamps | Enabled | Include timestamps at major section boundaries |
 | Visual-reference comments | Enabled | Mark passages requiring inspection of video content |
-| Output path | Derived from input | Destination of the generated Markdown file |
-| Output filename | Derived from input | Deterministic filename based on the source |
+| Output path | Same directory as input | Destination directory of the generated Markdown file |
+| Output filename | `<input-stem>.article.md` | Input filename without its final extension, followed by `.article.md` |
 
 Configuration should be simple and suitable for invocation through a Codex skill.
+
+Support both natural-language configuration and named `key=value` options. Both forms must configure the same underlying behavior. For example, "Convert this file in Polished mode, without critique" and `mode=polished critique=false` select equivalent settings.
+
+If natural-language instructions and named options specify conflicting values, ask the user to resolve the conflict before starting conversion. Neither form takes automatic precedence.
+
+Support a `help` argument, similar to a CLI program. When invoked with `help`, list every available option with its accepted values, default, and purpose, and include invocation examples for both configuration forms. Help must be available without an input file and must not start a conversion or create an article.
 
 When an option is unspecified, apply its documented default.
 
 ## 14. Acceptance Criteria
+
+### Test inputs
+
+Use the existing Markdown transcripts in `transcript_examples/` as representative test inputs. They cover different transcript lengths, languages, and topics. Preserve these source files unchanged. Evaluate both editing modes and relevant configuration behavior against these examples, including long-transcript processing and preservation of the original language.
+
+### Conversion acceptance
 
 A conversion is considered successful when:
 
