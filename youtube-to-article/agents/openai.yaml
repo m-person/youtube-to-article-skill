@@ -1,0 +1,3 @@
+interface:
+  display_name: "YouTube to Article"
+  short_description: "Turn saved transcripts into faithful, complete articles"
