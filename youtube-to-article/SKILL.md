@@ -51,6 +51,8 @@ If verification is enabled while critique is disabled, ask the user to resolve t
 
 **Both modes:** Preserve every substantive claim, fact, figure, date, name, term, example, analogy, procedure, intermediate reasoning step, objection, concession, qualification, exception, uncertainty, and conclusion. Keep expressed logical gaps and contradictions intact. Retain distinctions between facts, claims, speculation, reported views, and personal opinions. Preserve language, grammatical perspective, attribution, and meaningful tone; the article remains the speaker's presentation, not an external narrator's account. In interviews or AMAs, preserve questions and speaker distinctions wherever they affect meaning; do not invent speaker identities.
 
+When speaker labels are absent, timestamps and headings alone do not establish a change of speaker. Add names or turn boundaries only when supported by the conversational context. Preserve an uncertain attribution with a minimal marker or unnamed turn, and explain consequential uncertainty in the separate editorial section; a plausible reconstruction is not an established attribution.
+
 **Conservative:** Correct transcription, grammar, punctuation, sentence boundaries, and broken sentences; remove irrelevant speech artifacts; paragraph and add descriptive headings. Keep wording, sentence structure, and rhetorical style where practical.
 
 **Polished:** Also rewrite awkward phrasing, combine fragments, improve local paragraph organization and transitions, and clarify relationships or references already established by the speaker. Preserve the same substantive content as Conservative and maintain the original sequence. Added explanations or stronger arguments are outside this mode.

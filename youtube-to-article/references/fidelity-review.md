@@ -19,6 +19,17 @@ For each substantive draft statement, find its support in the transcript. Remove
 
 Check corrections against their confidence and preserve unresolved ambiguity. Check that perspective, speaker attribution, certainty, and distinctions between hypotheses and established facts have survived. Suspected speaker errors and contradictions must remain in the article.
 
+## Focused ambiguity checks
+
+For passages containing unclear references, corrections, asides, or unlabelled dialogue, compare the source and draft explicitly:
+
+- **Relationships and attribution:** Verify who did, said, or experienced what, and how people, places, and events are related. Distinguish a speaker's correction from a new assertion. Check the evidence for added names and speaker switches; timestamps and headings alone supply none. Preserve unresolved relationships rather than completing a plausible story.
+- **Asides and reported speech:** Distinguish quoted opinions, audience questions, interruptions, and recording remarks from the speaker's substantive claims. An aside may be removed when irrelevant, but its removal or integration must not create an additional person, object, action, or claim.
+- **Certainty and quantities:** Compare qualifiers, negation, frequency, numerical values, units, and time expressions in context. Preserve whether a time denotes a start, end, duration, or range; keep an unclear relation uncertain even when a number is legible. Preserve the strength of statements, especially where a later objection responds to it.
+- **Publication and source details:** Account for substantive mentions of where material was published, shared, or can be found, including channels, platforms, links, and references. Separate useful provenance from removable promotion rather than dropping both together.
+
+For any repair in these passages, recheck the changed wording against the corresponding source and its neighboring context. Keep the original claim intact where uncertainty remains; record the uncertainty separately instead of silently resolving it.
+
 ## Whole article
 
 Read sequentially after assembly, returning to source ranges as needed:

@@ -3,6 +3,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -20,7 +21,8 @@ class TranscriptIOTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(SCRIPT), *map(str, args)], capture_output=True, text=True)
 
     def test_all_real_examples_reconstruct_exactly_and_keep_sources(self):
-        examples = list((ROOT / 'transcript_examples').glob('*.md'))
+        examples = [p for p in (ROOT / 'transcript_examples').glob('*.md')
+                    if not re.search(r'\.article(?:\.\d+)?\.md$', p.name)]
         self.assertEqual(len(examples), 5)
         with tempfile.TemporaryDirectory() as temp:
             for n, source in enumerate(examples):
