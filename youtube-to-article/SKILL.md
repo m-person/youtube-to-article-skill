@@ -1,5 +1,6 @@
 ---
 name: youtube-to-article
+license: MIT
 description: Convert existing YouTube transcript Markdown files from Obsidian Web Clipper into faithful, complete articles, preserving language, perspective, reasoning, examples, and topic order. Use for transcript-to-article editing, including Conservative and Polished modes; not for summaries, translation, or transcript extraction from videos.
 ---
 
